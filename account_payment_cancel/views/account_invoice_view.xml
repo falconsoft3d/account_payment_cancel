@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="invoice_form_payment_cancel" model="ir.ui.view">
+        <field name="name">invoice.form.payment.cancel</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account_cancel.invoice_form_cancel_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_invoice_cancel']" position="replace">
+                <button name="payment_invoice_cancel"
+                    type="object" states="draft,proforma2,open,paid"
+                    string="Cancelar" groups="account.group_account_invoice"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="invoice_supplier_form_payment_cancel" model="ir.ui.view">
+        <field name="name">invoice.supplier.form.payment.cancel</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account_cancel.invoice_supplier_cancel_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_invoice_cancel']" position="before">
+                <button name="payment_invoice_cancel"
+                    type="object" states="draft,proforma2,open,paid"
+                    string="Cancelar" groups="account.group_account_invoice"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
